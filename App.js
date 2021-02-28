@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Dimensions, Text } from "react-native";
+import { StyleSheet, View, Dimensions, Text, Image } from "react-native";
 import Animated, { or, Easing } from "react-native-reanimated";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 const { width } = Dimensions.get("window");
@@ -83,6 +83,15 @@ export default class Example extends React.Component {
     }
     this.animate = timing(this.x_transition, this.config)
 
+    this.image_x_transition = new Value(0)
+    
+    this.image_config = {
+      duration : 800,
+      toValue : 1,
+      easing : Easing.inOut(Easing.ease),
+      useNativeDriver : true
+    }
+    this.animate_image = timing(this.image_x_transition, this.image_config)
   }
 
   onDrop = ([x, y]) => {
@@ -105,6 +114,7 @@ export default class Example extends React.Component {
 
   componentDidMount(){
     this.animate.start()
+    this.animate_image.start()
   }
 
   render() {
@@ -183,6 +193,25 @@ export default class Example extends React.Component {
         ></Animated.View>
         </PanGestureHandler>
 
+
+<View>
+<Animated.Image resizeMode = "contain" source ={{
+  uri : "https://cdn0.iconfinder.com/data/icons/very-basic-android-l-lollipop-icon-pack/24/cursor-512.png"
+  
+  
+}}
+style={[styles.image, {
+  transform : [
+    {
+      // rotate : `${this.image_x_transition}deg`
+      rotate : this.image_x_transition
+    }
+  ]
+}]}
+
+/>
+</View>
+
   
         {/* <PanGestureHandler
           maxPointers={1}
@@ -232,4 +261,11 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     left :100
   },
+  image : {
+    alignSelf : "center",
+    top : 200,
+    height : 50,
+    width :50,
+   
+  }
 });
