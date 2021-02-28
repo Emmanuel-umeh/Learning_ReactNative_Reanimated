@@ -184,7 +184,7 @@ export default class Example extends React.Component {
         </PanGestureHandler>
 
   
-        <PanGestureHandler
+        {/* <PanGestureHandler
           maxPointers={1}
           minDist={10}
           onGestureEvent={this.onGestureEvent}
@@ -208,6 +208,8 @@ export default class Example extends React.Component {
             <Text>Mega</Text>
           </Animated.View>
         </PanGestureHandler>
+       */}
+      
       </View>
     );
   }
