@@ -87,10 +87,18 @@ export default class Example extends React.Component {
     
     this.image_config = {
       duration : 800,
-      toValue : 1,
+      toValue : 269,
       easing : Easing.inOut(Easing.ease),
       useNativeDriver : true
     }
+
+    this.spin = this.image_x_transition.interpolate(
+      {
+        inputRange : [0,360],
+        outputRange : ["0deg", "360deg"]
+        
+      }
+    )
     this.animate_image = timing(this.image_x_transition, this.image_config)
   }
 
@@ -182,7 +190,7 @@ export default class Example extends React.Component {
               top: new Value(100),
               transform: [
                 {
-                  translateX: this.x_transition,
+                  translateX: this.transX,
                 },
                 // {
                 //   translateY: this.transY,
@@ -204,7 +212,8 @@ style={[styles.image, {
   transform : [
     {
       // rotate : `${this.image_x_transition}deg`
-      rotate : this.image_x_transition
+      // rotate : this.image_x_transition
+      rotate : this.spin
     }
   ]
 }]}
