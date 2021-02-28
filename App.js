@@ -190,7 +190,7 @@ export default class Example extends React.Component {
               top: new Value(100),
               transform: [
                 {
-                  translateX: this.transX,
+                  translateX: this.x_transition,
                 },
                 // {
                 //   translateY: this.transY,
